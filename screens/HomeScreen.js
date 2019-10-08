@@ -1,15 +1,17 @@
 import React from 'react';
+import { Countdown } from 'react-native-countdown-text';
 import {
   Image,
   Platform,
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
-  View,
+  View,SafeAreaView
 } from 'react-native';
-import { WebBrowser } from 'expo';
 
+import { Text, Button } from 'galio-framework';
+import { FlatGrid } from 'react-native-super-grid';
+import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 
 export default class HomeScreen extends React.Component {
@@ -18,55 +20,41 @@ export default class HomeScreen extends React.Component {
   };
 
   render() {
+    const items = [
+      { name: 'Tạo đơn hàng', code: '#3ce', image: require('../assets/images/robot-dev.png') }, 
+      { name: 'EMERALD', code: '#3ce', image: '' },
+      { name: 'PETER RIVER', code: '#3ce', image: '' }, 
+      { name: 'AMETHYST', code: '#3ce', image: '' },
+      { name: 'WET ASPHALT', code: '#3ce', image: '' }, 
+      { name: 'GREEN SEA', code: '#3ce', image: '' },
+    ];
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
-            <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
-            <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
+          <View style={styles.topView}>
+            <Text h3>MKH</Text><Text h3>Tên KH</Text>
           </View>
-          
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
-            />
-          </View>
+          <FlatGrid
+            itemDimension={100}
+            items={items}
+            style={styles.gridView}
+            // staticDimension={300}
+            // fixed
+            spacing={1}
+            renderItem={({ item, index }) => (
+              <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
+                <Image
+                  source={item.image}
+                  style={styles.itemImage}
+                />
 
-          <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
-
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
-            </View>
-
-            <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload.
-            </Text>
-          </View>
-
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-            </TouchableOpacity>
-          </View>
+                <Text style={styles.itemName}>{item.name}</Text>
+              </View>
+            )}
+          />
         </ScrollView>
 
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
-          </View>
-        </View>
-      </View>
+      </SafeAreaView>
     );
   }
 
@@ -131,6 +119,13 @@ const styles = StyleSheet.create({
     marginTop: 3,
     marginLeft: -10,
   },
+  topView: {
+    flex: 1,
+    flexDirection: 'row',
+    height: 50,
+    borderBottomColor: '#000',
+    borderBottomWidth: 1,
+  },
   getStartedContainer: {
     alignItems: 'center',
     marginHorizontal: 50,
@@ -191,4 +186,34 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#2e78b7',
   },
+  gridView: {
+    marginTop: 20,
+    flex: 1,
+  },
+  itemContainer: {
+    justifyContent: 'center',
+    borderRadius: 5,
+    padding: 10,
+    height: 150,
+    textAlign: 'center',
+  },
+  itemName: {
+    fontSize: 14,
+    color: '#000',
+    fontWeight: '500',
+    width: '100%',
+    textAlign: 'center',
+  },
+  itemCode: {
+    fontWeight: '600',
+    fontSize: 12,
+    color: '#000',
+  },
+  itemImage: {
+    width: 100,
+    height: 80,
+    resizeMode: 'contain',
+    marginTop: 3,
+    textAlign: 'center',
+  }
 });
