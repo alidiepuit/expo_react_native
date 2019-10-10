@@ -6,14 +6,16 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
-  View,SafeAreaView
+  View,SafeAreaView,Text
 } from 'react-native';
-
-import { Text, Button } from 'galio-framework';
+import LottieView from 'lottie-react-native';
+import { Formik } from 'formik';
 import { FlatGrid } from 'react-native-super-grid';
 import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
-
+import {
+  MKButton,
+} from 'react-native-material-kit';
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
@@ -22,12 +24,18 @@ export default class HomeScreen extends React.Component {
   render() {
     const items = [
       { name: 'Tạo đơn hàng', code: '#3ce', image: require('../assets/images/robot-dev.png') }, 
-      { name: 'EMERALD', code: '#3ce', image: '' },
-      { name: 'PETER RIVER', code: '#3ce', image: '' }, 
-      { name: 'AMETHYST', code: '#3ce', image: '' },
-      { name: 'WET ASPHALT', code: '#3ce', image: '' }, 
-      { name: 'GREEN SEA', code: '#3ce', image: '' },
+      { name: 'EMERALD', code: '#3ce', image: require('../assets/images/robot-dev.png') },
+      { name: 'PETER RIVER', code: '#3ce', image: require('../assets/images/robot-dev.png') }, 
+      { name: 'AMETHYST', code: '#3ce', image: require('../assets/images/robot-dev.png') },
+      { name: 'WET ASPHALT', code: '#3ce', image: require('../assets/images/robot-dev.png') }, 
+      { name: 'GREEN SEA', code: '#3ce', image: require('../assets/images/robot-dev.png') },
     ];
+    const ColoredRaisedButton = MKButton.coloredButton()
+        .withText('BUTTON')
+        .withOnPress(() => {
+          console.log("Hi, it's a colored button!");
+        })
+        .build();
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
@@ -52,6 +60,7 @@ export default class HomeScreen extends React.Component {
               </View>
             )}
           />
+          <ColoredRaisedButton/>
         </ScrollView>
 
       </SafeAreaView>
@@ -214,6 +223,5 @@ const styles = StyleSheet.create({
     height: 80,
     resizeMode: 'contain',
     marginTop: 3,
-    textAlign: 'center',
   }
 });

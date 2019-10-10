@@ -14,12 +14,16 @@
     "@expo/samples": "2.1.1",
     "@expo/vector-icons": "^8.1.0",
     "expo": "^32.0.0",
+    "formik": "^1.5.8",
     "galio-framework": "^0.6.1",
+    "lottie-react-native": "^2.5.11",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-countdown-text": "^1.0.3",
+    "react-native-material-kit": "^0.5.1",
     "react-native-super-grid": "^3.1.1",
-    "react-navigation": "^3.0.9"
+    "react-navigation": "^3.0.9",
+    "styled-components": "^4.4.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",
