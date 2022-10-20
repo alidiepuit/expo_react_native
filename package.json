@@ -13,7 +13,7 @@
   "dependencies": {
     "@expo/samples": "2.1.1",
     "@expo/vector-icons": "^8.1.0",
-    "expo": "^32.0.0",
+    "expo": "^46.0.16",
     "formik": "^1.5.8",
     "galio-framework": "^0.6.1",
     "lottie-react-native": "^2.5.11",
